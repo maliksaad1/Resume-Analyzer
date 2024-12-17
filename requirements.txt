@@ -1,0 +1,14 @@
+spacy
+PyPDF2
+nltk
+scikit-learn
+sentence-transformers
+pdfplumber
+pdfminer.six
+PyMuPDF
+google-generativeai
+python-dotenv
+streamlit
+docx2txt
+pdf2docx
+python-docx

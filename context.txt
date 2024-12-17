@@ -1,0 +1,131 @@
+Here's a comprehensive description of the Resume Analyzer project:
+
+# Resume Analyzer Project
+
+## For Non-Technical People 🌟
+
+This is a smart resume analysis tool that helps job seekers understand how well their resume matches specific job descriptions. Think of it as your personal resume coach that:
+
+1. **Analyzes Your Resume**: Upload your resume (PDF, Word, or text file) and paste a job description you're interested in.
+
+2. **Provides Detailed Feedback**:
+   - Shows you a match percentage between your resume and the job
+   - Lists skills and keywords that match the job requirements
+   - Points out important keywords you're missing
+   - Checks if your resume will pass through Applicant Tracking Systems (ATS)
+   - Gives specific suggestions to improve your resume
+
+3. **Two User Interfaces**:
+   - A web version (using Streamlit) that's easy to use in your browser
+   - A desktop application version with a traditional window interface
+
+The tool helps you optimize your resume for each job application, increasing your chances of getting past automated screening systems and catching the recruiter's attention.
+
+## For Technical People 🔧
+
+### Architecture
+
+The project is built with Python and consists of several key components:
+
+1. **Core Components**:
+```
+├── keyword_extraction.py    # Handles AI-powered resume analysis
+├── text_processing.py      # Manages document parsing and text cleanup
+├── app.py                  # Streamlit web interface
+├── gui.py                  # Desktop GUI using tkinter
+└── main.py                # Entry point for desktop version
+```
+
+### Key Technologies
+
+- **AI/ML**: 
+  - Google's Gemini Pro model via `google.generativeai`
+  - Prompt engineering for consistent analysis
+
+- **Document Processing**:
+  - Multiple PDF extraction methods (PyMuPDF, pdfplumber, pdfminer, PyPDF2)
+  - DOCX processing with docx2txt
+  - Fallback conversion methods (pdf2docx)
+
+- **Frontend**:
+  - Streamlit for web interface
+  - Tkinter for desktop GUI
+  - Responsive design with proper error handling
+
+### Key Features
+
+1. **Robust Document Processing**:
+   ```python
+   class TextProcessor:
+       def extract_text(self, uploaded_file):
+           # Multiple extraction methods with fallbacks
+           # Handles PDF, DOCX, DOC, TXT formats
+   ```
+
+2. **AI-Powered Analysis**:
+   ```python
+   class KeywordExtractor:
+       def analyze_match(self, resume_text: str, job_desc: str):
+           # Uses Gemini Pro for detailed analysis
+           # Returns structured JSON with match metrics
+   ```
+
+3. **Comprehensive Analysis Output**:
+   ```json
+   {
+       "match_percentage": float,
+       "matching_keywords": list,
+       "missing_keywords": list,
+       "suggestions": list,
+       "ats_compatibility": {
+           "score": float,
+           "will_pass_ats": boolean,
+           "issues": list,
+           "improvements": list
+       }
+   }
+   ```
+
+### Technical Features
+
+1. **Error Handling**:
+   - Cascading document extraction methods
+   - Comprehensive exception handling
+   - Detailed logging
+
+2. **Text Processing**:
+   - Unicode normalization
+   - Regular expression-based cleaning
+   - Format-specific extraction strategies
+
+3. **Performance Optimization**:
+   - Caching of processed text
+   - Efficient memory management for large documents
+   - Asynchronous processing where applicable
+
+### Setup and Deployment
+
+1. **Requirements**:
+   - Python 3.7+
+   - Google API key for Gemini Pro
+   - Dependencies listed in requirements.txt
+
+2. **Environment Setup**:
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+3. **Configuration**:
+   - Create .env file with GOOGLE_API_KEY
+   - Optional: Configure logging levels
+
+4. **Running the Application**:
+   ```bash
+   # For web interface
+   streamlit run app.py
+
+   # For desktop version
+   python main.py
+   ```
+
+The project follows modern Python best practices, including type hints, comprehensive error handling, and modular design for easy maintenance and extensibility.
